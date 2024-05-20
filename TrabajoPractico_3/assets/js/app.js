@@ -14,12 +14,15 @@ funcionalidades= Number(prompt("Ingrese la funcionalidad que desea realizar: \n"
 "2. Listar Tareas \n"));
 switch (funcionalidades){
     case 1 : 
-    let nuevaTarea = prompt(" ingrese una tarea: ");
+    let nuevaTarea = prompt(" ingrese una tarea: ").trim();
+    if (nuevaTarea === ""){
+        alert("No puede enviar vacio")
+    } else 
     tareas.push(nuevaTarea);
     break;
     case 2: 
     if (tareas.length === 0){
-        console.log("No hay tareas")
+        alert("No hay tareas")
     } else {
         let listaTareas = "Lista de Tareas:\n";
         for (let i = 0; i < tareas.length; i++) {
