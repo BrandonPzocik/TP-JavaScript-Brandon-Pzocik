@@ -9,18 +9,25 @@ lista.
 let tareas = []
 let funcionalidades = 0
 do {
-funcionalidades= Number(prompt("Ingrese la funcionalidad que desea realizar: \n" +
+funcionalidades= (prompt("Ingrese la funcionalidad que desea realizar: \n" +
 "1. Agregar Tarea \n" +
-"2. Listar Tareas \n"));
+"2. Listar Tareas \n" +
+"3. Editar Tarea \n" +
+"4. Eliminar Tarea \n" +
+"5. Salir"));
+
+if (funcionalidades === ""){
+    alert("Error, ingrese un valor valido");
+} else {
 switch (funcionalidades){
-    case 1 : 
+    case "1" : 
     let nuevaTarea = prompt(" ingrese una tarea: ").trim();
     if (nuevaTarea === ""){
-        alert("No puede enviar vacio")
+        alert("No puede estar vacio")
     } else 
     tareas.push(nuevaTarea);
     break;
-    case 2: 
+    case "2": 
     if (tareas.length === 0){
         alert("No hay tareas")
     } else {
@@ -31,8 +38,38 @@ switch (funcionalidades){
         alert(listaTareas);
     }
     break;
-    case 3: 
-    tareas.splice()
+    case "3": 
+    if (tareas.length === 0){
+    alert("No hay tarea para editar")
+    }else {
+    let indiceTarea = Number(prompt("ingrese el numero de la tarea que desea editar: "))
+     if (indiceTarea > 0 && indiceTarea <= tareas.length){
+        let cambioTarea = prompt("Ingrese la nueva tarea").trim();
+        if (cambioTarea === ""){
+            alert("No puede estar vacio")
+        } else {
+            tareas.splice(indiceTarea - 1, 1, cambioTarea);
+        }
+     }
+    }
+    break;
+    case "4" : 
+    if (tareas.length === 0){
+        alert("No hay tareas para eliminar")
+    } else {
+    let indiceEliminar = Number(prompt("ingrese el numero de la tarea que desea eliminar"))
+     if (indiceEliminar > 0 && indiceEliminar <= tareas.length){
+        tareas.splice(indiceEliminar - 1, 1);
+        alert("Tarea eliminada con éxito.");
+     }
+    }
+    break;
+    case "5" : 
+    alert("Gracias por utilizar el programa")
+    break;
+    default:
+        alert("Error, vuelva a ingresar")
+}
 } 
-}while ( funcionalidades >0 && funcionalidades <2)
+}while ( funcionalidades !== "5" )
 
